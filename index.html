@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SalesVerse - Empower Your Sales Journey</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #F4F6FB; color: #10182A; }
+    header { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: white; padding: 80px 20px; text-align: center; }
+    h1 { font-size: 3rem; letter-spacing: 3px; margin-bottom: 20px; }
+    .subtitle { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .cta-btn { background: #F59E42; color: white; border: none; padding: 18px 48px; font-size: 1.1rem; font-weight: 700; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s; }
+    .cta-btn:hover { background: #FF8C42; transform: translateY(-3px); }
+    main { max-width: 1200px; margin: -40px auto 60px; padding: 20px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 60px 0; }
+    .card { background: white; padding: 30px 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .card p { color: #64748B; font-size: 0.95rem; }
+    .register { background: white; max-width: 500px; margin: 60px auto; padding: 40px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .register h2 { text-align: center; color: #3B82F6; margin-bottom: 10px; }
+    .register p { text-align: center; color: #64748B; margin-bottom: 25px; }
+    .form-group { margin-bottom: 15px; }
+    input, select { width: 100%; padding: 14px; border: 2px solid #E2E8F0; border-radius: 10px; font-size: 1rem; transition: border 0.3s; }
+    input:focus, select:focus { outline: none; border-color: #3B82F6; background: #F8FAFC; }
+    .submit-btn { width: 100%; background: #3B82F6; color: white; border: none; padding: 16px; font-size: 1.1rem; font-weight: 700; border-radius: 10px; cursor: pointer; margin-top: 15px; transition: background 0.3s; }
+    .submit-btn:hover { background: #2563EB; }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .message { margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center; font-weight: 600; }
+    .success { background: #D1FAE5; color: #065F46; }
+    .error { background: #FEE2E2; color: #991B1B; }
+    footer { background: #10182A; color: white; text-align: center; padding: 30px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SalesVerse</h1>
+    <p class="subtitle">Transform the way you sell. Boost performance, connect, and thrive with next-gen sales enablement tools crafted for ambitious salespeople.</p>
+    <button class="cta-btn" onclick="document.getElementById('register').scrollIntoView({ behavior: 'smooth' })">Start Free Trial →</button>
+  </header>
+
+  <main>
+    <div class="features">
+      <div class="card"><span class="icon">👤</span><h3>Customer Management</h3><p>Organize and track all customer data smartly</p></div>
+      <div class="card"><span class="icon">📝</span><h3>AI Sales Pitches</h3><p>Generate dynamic, tailored pitches instantly</p></div>
+      <div class="card"><span class="icon">📊</span><h3>Market Comparisons</h3><p>Compare products with competitors in real-time</p></div>
+      <div class="card"><span class="icon">🏢</span><h3>Company Insights</h3><p>Showcase brand history and unique benefits</p></div>
+      <div class="card"><span class="icon">📈</span><h3>Trend Analytics</h3><p>Track market trends with live dashboards</p></div>
+      <div class="card"><span class="icon">🤖</span><h3>AI Recommendations</h3><p>Get smart suggestions for sales topics</p></div>
+      <div class="card"><span class="icon">📲</span><h3>Smart Follow-ups</h3><p>Automate WhatsApp and SMS communications</p></div>
+      <div class="card"><span class="icon">💰</span><h3>Commission Tracking</h3><p>Real-time earnings and performance metrics</p></div>
+      <div class="card"><span class="icon">🛒</span><h3>E-commerce Portal</h3><p>Sell products with built-in order management</p></div>
+      <div class="card"><span class="icon">🎯</span><h3>Sales Motivation</h3><p>Track targets and celebrate wins daily</p></div>
+      <div class="card"><span class="icon">🧠</span><h3>AI Sales Coach</h3><p>Personal coaching for skills and confidence</p></div>
+      <div class="card"><span class="icon">🗃️</span><h3>Lead Storage</h3><p>Centralized database for all customer info</p></div>
+    </div>
+
+    <div id="register" class="register">
+      <h2>Join SalesVerse Today</h2>
+      <p>Start your 14-day free trial. No credit card required.</p>
+      <form id="registerForm">
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Full Name *" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Work Email *" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number *" required>
+        </div>
+        <div class="form-group">
+          <input type="text" id="company" name="company" placeholder="Company Name (Optional)">
+        </div>
+        <div class="form-group">
+          <select id="role" name="role">
+            <option value="Sales Representative">Sales Representative</option>
+            <option value="Sales Manager">Sales Manager</option>
+            <option value="Business Owner">Business Owner</option>
+            <option value="Entrepreneur">Entrepreneur</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Start Free Trial</button>
+      </form>
+      <div id="message"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 SalesVerse. Built in Hyderabad for sales professionals worldwide.</p>
+  </footer>
+
+  <script>
+    const BACKEND_URL = scalesverse-backend-production.up.railway.app; // REPLACE THIS!
+    
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const messageDiv = document.getElementById('message');
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Creating Account...';
+      messageDiv.innerHTML = '';
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        company: document.getElementById('company').value,
+        role: document.getElementById('role').value
+      };
+      
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          messageDiv.className = 'message success';
+          messageDiv.textContent = '🎉 Registration successful! Welcome to SalesVerse!';
+          document.getElementById('registerForm').reset();
+        } else {
+          messageDiv.className = 'message error';
+          messageDiv.textContent = data.message || 'Registration failed. Please try again.';
+        }
+      } catch (error) {
+        messageDiv.className = 'message error';
+        messageDiv.textContent = 'Connection error. Please check your internet and try again.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Start Free Trial';
+      }
+    });
+  </script>
+</body>
+</html>
