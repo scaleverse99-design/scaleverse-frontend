@@ -1,1 +1,1 @@
-# scaleverse-frontend
+# salesverse-frontend
