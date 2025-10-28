@@ -3,77 +3,663 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SalesVerse - Empower Your Sales Journey</title>
+  <title>SalesVerse - Sales Enablement Platform</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #F4F6FB; color: #10182A; }
-    header { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: white; padding: 80px 20px; text-align: center; }
-    h1 { font-size: 3rem; letter-spacing: 3px; margin-bottom: 20px; }
-    .subtitle { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
-    .cta-btn { background: #F59E42; color: white; border: none; padding: 18px 48px; font-size: 1.1rem; font-weight: 700; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s; }
-    .cta-btn:hover { background: #FF8C42; transform: translateY(-3px); }
-    main { max-width: 1200px; margin: -40px auto 60px; padding: 20px; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 60px 0; }
-    .card { background: white; padding: 30px 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s; }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-    .card p { color: #64748B; font-size: 0.95rem; }
-    .register { background: white; max-width: 500px; margin: 60px auto; padding: 40px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .register h2 { text-align: center; color: #3B82F6; margin-bottom: 10px; }
-    .register p { text-align: center; color: #64748B; margin-bottom: 25px; }
-    .form-group { margin-bottom: 15px; }
-    input, select { width: 100%; padding: 14px; border: 2px solid #E2E8F0; border-radius: 10px; font-size: 1rem; transition: border 0.3s; }
-    input:focus, select:focus { outline: none; border-color: #3B82F6; background: #F8FAFC; }
-    .submit-btn { width: 100%; background: #3B82F6; color: white; border: none; padding: 16px; font-size: 1.1rem; font-weight: 700; border-radius: 10px; cursor: pointer; margin-top: 15px; transition: background 0.3s; }
-    .submit-btn:hover { background: #2563EB; }
-    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .message { margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center; font-weight: 600; }
-    .success { background: #D1FAE5; color: #065F46; }
-    .error { background: #FEE2E2; color: #991B1B; }
-    footer { background: #10182A; color: white; text-align: center; padding: 30px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      background: white;
+      border-right: 1px solid #e2e8f0;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .logo {
+      padding: 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #3b82f6;
+    }
+
+    .nav-menu {
+      padding: 1rem 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      color: #64748b;
+      text-decoration: none;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background: #f1f5f9;
+      color: #3b82f6;
+      border-left-color: #3b82f6;
+    }
+
+    .nav-item .icon {
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 250px;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: white;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 400px;
+      margin: 0 2rem;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .notification-btn {
+      padding: 0.5rem;
+      border: none;
+      background: #f1f5f9;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    /* Dashboard Content */
+    .dashboard {
+      padding: 2rem;
+    }
+
+    .welcome {
+      margin-bottom: 2rem;
+    }
+
+    .welcome h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome p {
+      color: #64748b;
+      font-size: 1.125rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .stat-header {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-change {
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .stat-change.positive { color: #16a34a; }
+    .stat-change.negative { color: #dc2626; }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .content-card {
+      background: white;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: between;
+      align-items: center;
+    }
+
+    .card-header h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    /* Activity Items */
+    .activity-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .activity-content {
+      flex: 1;
+    }
+
+    .activity-title {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .activity-time {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+
+    /* Task Items */
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .task-item:last-child {
+      border-bottom: none;
+    }
+
+    .task-info {
+      flex: 1;
+    }
+
+    .task-title {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .task-due {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+
+    .task-priority {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .priority-high {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
+    .priority-medium {
+      background: #fefbf2;
+      color: #d97706;
+    }
+
+    .priority-low {
+      background: #f0f9ff;
+      color: #0284c7;
+    }
+
+    /* Progress Bars */
+    .progress-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #f1f5f9;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #3b82f6;
+      transition: width 0.3s ease;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      background: white;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #f8fafc;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    /* Registration Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+      }
+
+      .sidebar.mobile-open {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>SalesVerse</h1>
-    <p class="subtitle">Transform the way you sell. Boost performance, connect, and thrive with next-gen sales enablement tools crafted for ambitious salespeople.</p>
-    <button class="cta-btn" onclick="document.getElementById('register').scrollIntoView({ behavior: 'smooth' })">Start Free Trial →</button>
-  </header>
-
-  <main>
-    <div class="features">
-      <div class="card"><span class="icon">👤</span><h3>Customer Management</h3><p>Organize and track all customer data smartly</p></div>
-      <div class="card"><span class="icon">📝</span><h3>AI Sales Pitches</h3><p>Generate dynamic, tailored pitches instantly</p></div>
-      <div class="card"><span class="icon">📊</span><h3>Market Comparisons</h3><p>Compare products with competitors in real-time</p></div>
-      <div class="card"><span class="icon">🏢</span><h3>Company Insights</h3><p>Showcase brand history and unique benefits</p></div>
-      <div class="card"><span class="icon">📈</span><h3>Trend Analytics</h3><p>Track market trends with live dashboards</p></div>
-      <div class="card"><span class="icon">🤖</span><h3>AI Recommendations</h3><p>Get smart suggestions for sales topics</p></div>
-      <div class="card"><span class="icon">📲</span><h3>Smart Follow-ups</h3><p>Automate WhatsApp and SMS communications</p></div>
-      <div class="card"><span class="icon">💰</span><h3>Commission Tracking</h3><p>Real-time earnings and performance metrics</p></div>
-      <div class="card"><span class="icon">🛒</span><h3>E-commerce Portal</h3><p>Sell products with built-in order management</p></div>
-      <div class="card"><span class="icon">🎯</span><h3>Sales Motivation</h3><p>Track targets and celebrate wins daily</p></div>
-      <div class="card"><span class="icon">🧠</span><h3>AI Sales Coach</h3><p>Personal coaching for skills and confidence</p></div>
-      <div class="card"><span class="icon">🗃️</span><h3>Lead Storage</h3><p>Centralized database for all customer info</p></div>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h1>SalesVerse</h1>
     </div>
+    <div class="nav-menu">
+      <a href="#" class="nav-item active">
+        <span class="icon">📊</span>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">👥</span>
+        Customers
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">📝</span>
+        Sales Pitches
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">📈</span>
+        Market Intelligence
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">🛤️</span>
+        Sales Funnel
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">🤖</span>
+        AI Assistant
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">🛒</span>
+        E-commerce
+      </a>
+      <a href="#" class="nav-item">
+        <span class="icon">📚</span>
+        Training
+      </a>
+    </div>
+  </nav>
 
-    <div id="register" class="register">
-      <h2>Join SalesVerse Today</h2>
-      <p>Start your 14-day free trial. No credit card required.</p>
-      <form id="registerForm">
-        <div class="form-group">
-          <input type="text" id="name" name="name" placeholder="Full Name *" required>
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <div class="search-bar">
+        <input type="text" placeholder="Search customers, deals, products...">
+      </div>
+      <div class="user-info">
+        <button class="notification-btn">🔔</button>
+        <button class="btn btn-primary" onclick="openRegistrationModal()">Get Started</button>
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <div class="welcome">
+        <h2>Welcome back, Sales Professional! 👋</h2>
+        <p>Your sales performance is looking great. Here's what's happening today.</p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">Total Revenue</div>
+          <div class="stat-value">₹23,45,678</div>
+          <div class="stat-change positive">
+            ↗️ +12.5% vs last month
+          </div>
         </div>
-        <div class="form-group">
-          <input type="email" id="email" name="email" placeholder="Work Email *" required>
+        <div class="stat-card">
+          <div class="stat-header">Active Customers</div>
+          <div class="stat-value">1,234</div>
+          <div class="stat-change positive">
+            ↗️ +8.2% vs last month
+          </div>
         </div>
-        <div class="form-group">
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number *" required>
+        <div class="stat-card">
+          <div class="stat-header">Conversion Rate</div>
+          <div class="stat-value">24.8%</div>
+          <div class="stat-change negative">
+            ↘️ -2.1% vs last month
+          </div>
         </div>
-        <div class="form-group">
-          <input type="text" id="company" name="company" placeholder="Company Name (Optional)">
+        <div class="stat-card">
+          <div class="stat-header">Pipeline Value</div>
+          <div class="stat-value">₹8,92,456</div>
+          <div class="stat-change positive">
+            ↗️ +15.3% vs last month
+          </div>
         </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="content-grid">
+        <!-- Recent Activities -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Recent Activities</h3>
+            <button class="btn">View All</button>
+          </div>
+          <div class="card-content">
+            <div class="activity-item">
+              <div class="activity-icon">🤝</div>
+              <div class="activity-content">
+                <div class="activity-title">New deal created with TechCorp Solutions</div>
+                <div class="activity-time">2 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">📅</div>
+              <div class="activity-content">
+                <div class="activity-title">Customer meeting scheduled with HealthPlus Medical</div>
+                <div class="activity-time">4 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">📝</div>
+              <div class="activity-content">
+                <div class="activity-title">AI-generated sales pitch sent to Finance Group Inc</div>
+                <div class="activity-time">6 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">🤖</div>
+              <div class="activity-content">
+                <div class="activity-title">AI follow-up sent to 5 prospects via WhatsApp</div>
+                <div class="activity-time">8 hours ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Content -->
+        <div>
+          <!-- Upcoming Tasks -->
+          <div class="content-card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+              <h3>Upcoming Tasks</h3>
+              <button class="btn">View All</button>
+            </div>
+            <div class="card-content">
+              <div class="task-item">
+                <div class="task-info">
+                  <div class="task-title">Follow up with TechCorp Solutions</div>
+                  <div class="task-due">Today</div>
+                </div>
+                <span class="task-priority priority-high">High</span>
+              </div>
+              <div class="task-item">
+                <div class="task-info">
+                  <div class="task-title">Prepare AI-generated proposal</div>
+                  <div class="task-due">Tomorrow</div>
+                </div>
+                <span class="task-priority priority-medium">Medium</span>
+              </div>
+              <div class="task-item">
+                <div class="task-info">
+                  <div class="task-title">Market research for new prospects</div>
+                  <div class="task-due">This week</div>
+                </div>
+                <span class="task-priority priority-low">Low</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sales Performance -->
+          <div class="content-card">
+            <div class="card-header">
+              <h3>Sales Performance Overview</h3>
+            </div>
+            <div class="card-content">
+              <div class="progress-item">
+                <div class="progress-header">
+                  <span>Revenue Goal</span>
+                  <span>78%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 78%"></div>
+                </div>
+                <small style="color: #64748b;">₹7.8L of ₹10L target</small>
+              </div>
+              
+              <div class="progress-item">
+                <div class="progress-header">
+                  <span>Deals Closed</span>
+                  <span>65%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 65%"></div>
+                </div>
+                <small style="color: #64748b;">13 of 20 deals</small>
+              </div>
+              
+              <div class="progress-item">
+                <div class="progress-header">
+                  <span>New Customers</span>
+                  <span>92%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 92%"></div>
+                </div>
+                <small style="color: #64748b;">46 of 50 customers</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Registration Modal -->
+  <div id="registrationModal" class="modal">
+    <div class="modal-content">
+      <h2 style="margin-bottom: 1rem; color: #3b82f6;">Join SalesVerse Today</h2>
+      <p style="margin-bottom: 1.5rem; color: #64748b;">Start your 14-day free trial. No credit card required.</p>
+      
+      <form id="registrationForm">
         <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Work Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="company">
+        </div>
+        
+        <div class="form-group">
+          <label for="role">Role</label>
           <select id="role" name="role">
             <option value="Sales Representative">Sales Representative</option>
             <option value="Sales Manager">Sales Manager</option>
@@ -81,24 +667,34 @@
             <option value="Entrepreneur">Entrepreneur</option>
           </select>
         </div>
-        <button type="submit" class="submit-btn" id="submitBtn">Start Free Trial</button>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <button type="button" class="btn" onclick="closeRegistrationModal()" style="flex: 1;">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Start Free Trial</button>
+        </div>
       </form>
-      <div id="message"></div>
+      
+      <div id="registrationMessage" style="margin-top: 1rem;"></div>
     </div>
-  </main>
-
-  <footer>
-    <p>© 2025 SalesVerse. Built in Hyderabad for sales professionals worldwide.</p>
-  </footer>
+  </div>
 
   <script>
-    const BACKEND_URL = scalesverse-backend-production.up.railway.app; // REPLACE THIS!
-    
-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    const BACKEND_URL = 'YOUR_RAILWAY_BACKEND_URL_HERE'; // Replace with your actual URL
+
+    function openRegistrationModal() {
+      document.getElementById('registrationModal').classList.add('active');
+    }
+
+    function closeRegistrationModal() {
+      document.getElementById('registrationModal').classList.remove('active');
+    }
+
+    // Registration form handler
+    document.getElementById('registrationForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const submitBtn = document.getElementById('submitBtn');
-      const messageDiv = document.getElementById('message');
+      const messageDiv = document.getElementById('registrationMessage');
+      const submitBtn = e.target.querySelector('button[type="submit"]');
       
       submitBtn.disabled = true;
       submitBtn.textContent = 'Creating Account...';
@@ -122,21 +718,29 @@
         const data = await response.json();
         
         if (data.success) {
-          messageDiv.className = 'message success';
-          messageDiv.textContent = '🎉 Registration successful! Welcome to SalesVerse!';
-          document.getElementById('registerForm').reset();
+          messageDiv.innerHTML = '<div style="color: #16a34a; padding: 1rem; background: #f0fdf4; border-radius: 0.5rem;">🎉 Registration successful! Welcome to SalesVerse!</div>';
+          document.getElementById('registrationForm').reset();
+          setTimeout(() => {
+            closeRegistrationModal();
+          }, 2000);
         } else {
-          messageDiv.className = 'message error';
-          messageDiv.textContent = data.message || 'Registration failed. Please try again.';
+          messageDiv.innerHTML = `<div style="color: #dc2626; padding: 1rem; background: #fef2f2; border-radius: 0.5rem;">${data.message || 'Registration failed. Please try again.'}</div>`;
         }
       } catch (error) {
-        messageDiv.className = 'message error';
-        messageDiv.textContent = 'Connection error. Please check your internet and try again.';
+        messageDiv.innerHTML = '<div style="color: #dc2626; padding: 1rem; background: #fef2f2; border-radius: 0.5rem;">Connection error. Please check your internet and try again.</div>';
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Start Free Trial';
       }
     });
+
+    // Close modal when clicking outside
+    document.getElementById('registrationModal').addEventListener('click', (e) => {
+      if (e.target.id === 'registrationModal') {
+        closeRegistrationModal();
+      }
+    });
   </script>
 </body>
 </html>
+
